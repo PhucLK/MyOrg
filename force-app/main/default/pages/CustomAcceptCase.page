@@ -1,0 +1,12 @@
+<apex:page standardController="Case" extensions="CustomAcceptButtonController">
+    <apex:form>
+        <apex:pageMessages />
+
+        <apex:pageBlock title="Accept Custom Object">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Accept" action="{!acceptRecord}" />
+                <apex:commandButton value="Cancel" action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Quick Text Usage Report">
+        <!-- Search inputs -->
+        <div class="slds-m-around_medium slds-grid slds-wrap">
+            <div class="slds-size_1-of-3">
+                <lightning-input label="Country" onchange={handleCountryChange}></lightning-input>
+            </div>
+            <div class="slds-size_1-of-3">
+                <lightning-input label="Quick Text Message" onchange={handleQuickTextMessageChange}></lightning-input>
+            </div>
+            <div class="slds-size_1-of-3">
+                <lightning-button label="Search" onclick={handleSearch}></lightning-button>
+            </div>
+        </div>
+        <!-- Data table -->
+        <template if:true={quickTextUsageData}>
+            <lightning-datatable
+                key-field="Id"
+                data={quickTextUsageData}
+                columns={columns}
+                hide-checkbox-column="true"
+                is-loading={isLoading}
+                resize-column-disabled="true"
+            ></lightning-datatable>
+            <!-- Pagination -->
+            <template if:true={showPagination}>
+                <div class="slds-m-around_medium">
+                    <lightning-button label="Previous" onclick={handlePrevious} disabled={isFirstPage}></lightning-button>
+                    <span>{currentPage} of {totalPages}</span>
+                    <lightning-button label="Next" onclick={handleNext} disabled={isLastPage}></lightning-button>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,30 @@
+<apex:page standardController="Case" extensions="AcceptCasesController" action="{!massAccept}">
+    <apex:pageMessages />
+    <script>
+        var caseIds = {!GETRECORDIDS($ObjectType.Case)};
+
+        if (caseIds.length > 0) {
+            // Perform the mass accept logic here using JavaScript remoting
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.AcceptCasesController.massAccept}',
+                caseIds,
+                function(result, event) {
+                    if (event.status && result === 'success') {
+                        // Success message
+                        alert('Cases successfully accepted.');
+                        // Open new tab for each accepted case
+                        caseIds.forEach(function(caseId) {
+                            window.open('/' + caseId, '_blank');
+                        });
+                    } else {
+                        // Error message
+                        alert('An error occurred while accepting cases.');
+                    }
+                },
+                {escape: true}
+            );
+        } else {
+            alert('No cases selected.');
+        }
+    </script>
+</apex:page>
