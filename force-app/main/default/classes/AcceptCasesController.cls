@@ -4,7 +4,7 @@ public class AcceptCasesController {
 
     public AcceptCasesController(ApexPages.StandardController stdController) {
         this.c = (Case)stdController.getRecord();
-        // Some code... changed
+        // Some code... changed sdfdsf90000
     }
 
     public void massAccept() {
